@@ -21,24 +21,6 @@ A lógica é baseada em duas pilhas:
 
 A Pilha foi implementada em C puro como uma **lista encadeada** (linked list) para gerenciar strings de tamanho variável de forma eficiente. A implementação está separada em:
 
-* `pilha.h`: Arquivo de cabeçalho (header) com as definiTamanhocoes da `struct` e os protótipos das funções.
-* `pilha.c`: A implementação das funções da pilha (ex: `push`, `pop`, `estaVazia`).
+* `pilha.h`: Arquivo de cabeçalho (header) com as definições da `struct` e os protótipos das funções.
+* `pilha.c`: A implementação das funções da pilha.
 * `main.c`: O programa principal que contém a lógica do menu e o gerenciamento das pilhas de Undo/Redo.
-
-## ⚙️ Como Compilar e Executar
-
-1.  Clone o repositório:
-    ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-    cd seu-repositorio
-    ```
-2.  Compile os arquivos:
-    ```bash
-    gcc main.c pilha.c -o editor
-    ```
-3.  Execute o programa:
-    ```bash
-    ./editor
-    ```
-
----

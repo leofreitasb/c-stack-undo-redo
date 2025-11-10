@@ -43,10 +43,10 @@ int main() {
                 break;
             }
             
-            case 2: { // Concluir ultimo item (Pop)
+            case 2: { 
                 system(LIMPAR_TELA);
                 
-                // MUDANÇA AQUI: Verificamos antes de chamar o pop
+                
                 if (estaVazia(todo_list)) {
                     printf("\n--------------------------------------\n");
                     printf("Parabens! Sua lista esta vazia.\n");
@@ -69,7 +69,7 @@ int main() {
                 system(LIMPAR_TELA);
                 printf("--- Proximo Item a Fazer ---\n");
 
-                // MUDANÇA AQUI: Trocamos a verificação manual pela função
+                
                 if (estaVazia(todo_list)) {
                     printf("\nSua lista esta vazia.\n");
                 } else {

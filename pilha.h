@@ -6,28 +6,29 @@
 #include <string.h>
 
 #ifdef _WIN32
-    #define LIMPAR_TELA "cls"
+    #define LIMPAR_TELA "cls"
 #else
-    #define LIMPAR_TELA "clear"
+    #define LIMPAR_TELA "clear"
 #endif
 
 typedef struct No{
-    char* texto;
-    struct No* prox;
+    char* texto;
+    struct No* prox;
 } No;
 
 typedef struct Pilha{
-    No* topo;
+    No* topo;
 } Pilha;
 
 
 // Protótipos das funções
 Pilha* criar_pilha();
 
-void push(Pilha* pi, const char* texto);   // Empilhar
-char* pop(Pilha* pi);                      // Desempilhar
-void display(Pilha* pi);                   // Imprime o conteúdo da pilha
-void limparPilha(Pilha* pi);               // Esvazia a pilha
+void push(Pilha* pi, const char* texto);   // Empilhar
+char* pop(Pilha* pi);                      // Desempilhar
+void display(Pilha* pi);                   // Imprime o conteúdo da pilha
+void limparPilha(Pilha* pi);               // Esvazia a pilha
+int estaVazia(Pilha* pi);                 // <-- NOVA FUNÇÃO ADICIONADA
 void limpar_buffer();
 
 #endif

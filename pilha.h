@@ -63,6 +63,11 @@ void limparPilha(Pilha* pi);
 int estaVazia(Pilha* pi);
 
 /**
+ * @brief 
+ */
+int texto_valido(const char* txt);
+
+/**
  * @brief Conta quantos itens existem atualmente na pilha.
  * @param pi Ponteiro para a pilha.
  * @return O número de itens (int) na pilha.

@@ -35,6 +35,13 @@ int main() {
                 scanf("%[^\n]", buffer);
                 limpar_buffer();
 
+                if (!texto_valido(buffer)) {
+                    printf("\nErro: Tarefa vazia nao pode ser adicionada.\n");
+                    printf("\nAperte <ENTER> para voltar.");
+                    getchar();
+                    break;
+                }
+
                 push(todo_list, buffer);
 
                 printf("\n--------------------------------------\n");

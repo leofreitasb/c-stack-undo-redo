@@ -1,6 +1,12 @@
 #ifndef PILHA_H
 #define PILHA_H
 
+#define COR_RESET   "\033[0m"
+#define COR_VERDE   "\033[0;32m"
+#define COR_VERMELHO "\033[0;31m"
+#define COR_AMARELO "\033[1;33m"
+#define COR_CYAN    "\033[0;36m"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -61,11 +67,6 @@ void limparPilha(Pilha* pi);
  * @return 1 (verdadeiro) se a pilha estiver vazia ou nula, 0 (falso) caso contrário.
  */
 int estaVazia(Pilha* pi);
-
-/**
- * @brief 
- */
-int texto_valido(const char* txt);
 
 /**
  * @brief Conta quantos itens existem atualmente na pilha.

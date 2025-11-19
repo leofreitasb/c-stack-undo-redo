@@ -1,95 +1,91 @@
 #include "pilha.h"
 
-// Função auxiliar para validar texto
-int texto_valido(const char* txt) {
-    if (txt == NULL) return 0;
-
-    // ignorar espaços
-    while (*txt == ' ' || *txt == '\t') txt++;
-
-    return (*txt != '\0');
-}
-
 Pilha* criar_pilha(){
     Pilha* pi = (Pilha*) malloc(sizeof(Pilha));
-    if (pi == NULL) {
-        printf("Erro: Memoria cheia (pilha nao foi criada)\n");
-        return NULL;
+    if (pi != NULL){
+        pi->topo = NULL;
     }
-    pi->topo = NULL;
     return pi;
 }
 
 void push(Pilha* pi, const char* texto){
-    if (pi == NULL) {
-        printf("Erro: Pilha inexistente\n");
-        return;
-    }
-
-    if (!texto_valido(texto)) {
-        printf("Erro: Texto vazio nao pode ser adicionado\n");
-        return;
-    }
+    if (pi == NULL) return;
 
     No* novo_no = (No*) malloc(sizeof(No));
-    if (novo_no == NULL) {
-        printf("Erro: Memoria cheia (nao foi possivel adicionar item)\n");
-        return;
-    }
 
-    novo_no->texto = strdup(texto);
+    if (novo_no == NULL) return;
+
+    novo_no->texto = strdup(texto); 
     if (novo_no->texto == NULL) {
-        printf("Erro: Memoria cheia (texto nao duplicado)\n");
+        perror("Erro ao duplicar string para a pilha");
         free(novo_no);
         return;
     }
 
     novo_no->prox = pi->topo;
     pi->topo = novo_no;
+
+    printf(COR_VERDE "Item adicionado com sucesso.\n" COR_RESET);
 }
 
 char* pop(Pilha* pi){
-    if (pi == NULL || estaVazia(pi)) {
-        printf("Aviso: Nenhum item para remover.\n");
+    // Corrigido para usar a nova função
+    if (estaVazia(pi)){ 
+        printf(COR_VERMELHO "Erro: Pilha vazia.\n" COR_RESET);
         return NULL;
     }
 
     No* no_remover = pi->topo;
-    char* texto = no_remover->texto;
-
+    char* texto_retornado = no_remover->texto;
     pi->topo = no_remover->prox;
 
-    free(no_remover);
-    return texto;
+    free(no_remover); 
+
+    return texto_retornado;
 }
 
 void display(Pilha* pi){
-    if (pi == NULL || estaVazia(pi)){
-        printf("Pilha Vazia\n");
+    if (estaVazia(pi)){ 
+        printf(COR_AMARELO "Pilha vazia.\n" COR_RESET);
         return;
     }
 
+    printf(COR_CYAN "\n===== PILHA =====\n" COR_RESET);
+
     No* atual = pi->topo;
-    printf("--- TOPO ---\n");
-    while (atual != NULL){
-        printf("  %s\n", atual->texto);
+    while (atual != NULL) {
+        printf(COR_CYAN " ┌───────────────┐\n" COR_RESET);
+        printf(COR_CYAN " │ " COR_RESET "%s\n", atual->texto);
+        printf(COR_CYAN " └───────────────┘\n" COR_RESET);
+
+        if (atual->prox != NULL)
+            printf("        ↑\n");
+
         atual = atual->prox;
     }
-    printf("--- BASE ---\n");
+
+    printf(COR_CYAN "===== BASE =====\n" COR_RESET);
 }
 
 void limparPilha(Pilha* pi){
     if (pi == NULL) return;
 
-    while (!estaVazia(pi)) {
+    // Corrigido para usar a nova função
+    while (!estaVazia(pi)){ 
         char* texto = pop(pi);
-        if (texto != NULL) free(texto);
+        
+        if (texto != NULL){
+            free(texto);
+        }
     }
 }
 
-int estaVazia(Pilha* pi){
-    if (pi == NULL) return 1;
-    return (pi->topo == NULL);
+// Nova função implementada
+int estaVazia(Pilha* pi) {
+    if (pi == NULL) {
+        return 1; // Uma pilha nula pode ser considerada "vazia"
+    }
+    return (pi->topo == NULL); 
 }
 
 void limpar_buffer(){
@@ -97,14 +93,17 @@ void limpar_buffer(){
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
+// Nova função implementada
 int contarItens(Pilha* pi){
-    if (pi == NULL || estaVazia(pi)) return 0;
-
-    int c = 0;
+    if (estaVazia(pi)) {
+        return 0;
+    }
+    
+    int count = 0;
     No* atual = pi->topo;
     while (atual != NULL){
-        c++;
+        count++;
         atual = atual->prox;
     }
-    return c;
+    return count;
 }

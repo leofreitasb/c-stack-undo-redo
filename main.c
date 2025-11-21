@@ -113,8 +113,8 @@ int main() {
 
     } while (opcao != 5);
     
-    limparPilha(todo_list);
-    free(todo_list);
+
+    destruirPilha(todo_list);
 
     printf("Programa finalizado.\n");
     return 0;

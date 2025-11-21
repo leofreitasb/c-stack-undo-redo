@@ -22,7 +22,10 @@ void push(Pilha* pi, const char* texto){
         return;
     }
 
+    
     novo_no->prox = pi->topo;
+    
+   
     pi->topo = novo_no;
 
     printf(COR_VERDE "Item adicionado com sucesso.\n" COR_RESET);
@@ -36,6 +39,8 @@ char* pop(Pilha* pi){
 
     No* no_remover = pi->topo;
     char* texto_retornado = no_remover->texto;
+
+    
     pi->topo = no_remover->prox;
 
     free(no_remover); 
@@ -76,6 +81,14 @@ void limparPilha(Pilha* pi){
             free(texto);
         }
     }
+}
+
+
+void destruirPilha(Pilha* pi){
+    if (pi == NULL) return;
+
+    limparPilha(pi); 
+    free(pi);        
 }
 
 int estaVazia(Pilha* pi) {

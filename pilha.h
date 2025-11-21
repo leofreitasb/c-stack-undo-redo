@@ -31,6 +31,7 @@ void push(Pilha* pi, const char* texto);
 char* pop(Pilha* pi); 
 void display(Pilha* pi); 
 void limparPilha(Pilha* pi);
+void destruirPilha(Pilha* pi); // Nova função solicitada
 int estaVazia(Pilha* pi);
 int contarItens(Pilha* pi);
 void limpar_buffer();
